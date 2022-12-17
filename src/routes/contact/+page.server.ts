@@ -1,7 +1,7 @@
 import { fail } from '@sveltejs/kit';
+import type { Actions } from './$types';
 
-/** @type {import('@sveltejs/kit').Actions} */
-export const actions = {
+export const actions: Actions = {
 	email: async ({ locals }) => {
 		if (!locals?.user?.roles?.includes('admin')) {
 			return fail(401, {

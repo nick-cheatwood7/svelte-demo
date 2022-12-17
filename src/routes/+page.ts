@@ -1,5 +1,6 @@
-/** @type {import('@sveltejs/kit').Load} */
-export async function load({ fetch, parent }) {
+import type { Load } from '@sveltejs/kit';
+
+export const load = (async ({ fetch, parent }) => {
 	const parent_data = await parent();
 	console.log('parent_data', parent_data);
 
@@ -9,4 +10,4 @@ export async function load({ fetch, parent }) {
 	return {
 		latest_episode: data
 	};
-}
+}) satisfies Load;

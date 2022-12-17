@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+  import type { PageData } from './$types';
   import { goto } from '$app/navigation';
   import { env } from '$env/dynamic/public';
   console.log('env', env)
@@ -9,7 +10,7 @@
   import './styles.css'
 	import Episodes from './Episodes.svelte';
 
-  export let data;
+  export let data: PageData;
   $: ({ all_episodes } = data);
   console.log(browser, building, dev, version)
 </script>
@@ -38,15 +39,5 @@
 
   aside {
     order: -1;
-  }
-
-  .loading {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: blue;
-    color: white;
   }
 </style>

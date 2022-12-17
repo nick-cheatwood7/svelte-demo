@@ -1,8 +1,6 @@
-<script>
-  /**
-	 * @type {any}
-	 */
-   export let data;
+<script lang="ts">
+  import type { PageData } from "./$types";
+   export let data: PageData;
   $: ({ episode } = data)
 </script>
 

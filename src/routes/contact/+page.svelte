@@ -1,26 +1,27 @@
-<script>
+<script lang="ts">
+  import type { ActionResult } from "@sveltejs/kit";
+  import type {  ActionData } from "./$types";
   import {invalidateAll} from "$app/navigation";
   import { applyAction, deserialize } from "$app/forms";
-  /**
-   * @type {any}
-   */
-  export let form;
+
+  export let form: ActionData;
   $: console.log(form);
 
-  /** @type {import('@sveltejs/kit').SubmitFunction}*/
-  async function handleSubmit(event) {
-
+  async function handleSubmit(_event: any) {
     // Create Form Data
+    // @ts-ignore
     const data = new FormData(this);
 
     // Make fetch request
+    // @ts-ignore
     const res = await fetch(this.action, {
       method: 'POST',
       body: data,
     });
 
     // Deserialize data
-    const result = deserialize(await res.text());
+    const result: ActionResult = deserialize(await res.text());
+
     if(result.type === "success") {
       // Reload all data
       await invalidateAll();
