@@ -1,5 +1,5 @@
-<script>
-  export let episodes;
+<script lang="ts">
+  export let episodes: any;
 </script>
 
 <nav>

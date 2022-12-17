@@ -1,11 +1,11 @@
-import { env } from '$env/dynamic/private';
 import { API_KEY } from '$env/static/private';
+
+import type { PageServerLoad, PageServerLoadEvent } from './$types';
 
 import { error } from '@sveltejs/kit';
 console.log('API KEY', API_KEY);
 
-/** @type {import('@sveltejs/kit').ServerLoad} */
-export async function load({ fetch, params, setHeaders, locals }) {
+export const load = (async ({ fetch, params, setHeaders, locals }: PageServerLoadEvent) => {
 	// if (!locals?.user?.id) throw redirect(307, '/');
 
 	const res = await fetch(`https://syntax.fm/api/shows/${params.id}`);
@@ -24,4 +24,4 @@ export async function load({ fetch, params, setHeaders, locals }) {
 		episode: data,
 		user: locals.user
 	};
-}
+}) satisfies PageServerLoad;
